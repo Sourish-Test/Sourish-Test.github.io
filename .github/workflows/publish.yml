@@ -22,13 +22,15 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
+          cache: 'npm'
       - name: Generate Main Website
         run: |
           npm ci
           npm run export
       - name: Cleanup Files
         run: |
-          rm -rf !("out"|"blog")
+          rm .git
+          rm node_modules
           mv out/* .
           rm out
       - name: Archive build output
