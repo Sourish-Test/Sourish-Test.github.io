@@ -13,15 +13,22 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Build Blog with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./jekyll
+          destination: ./blog
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 16
-      - name: Generate static files
+      - name: Generate Main Website
         run: |
           npm ci
           npm run export
-          rm -rf !(out/)
+      - name: Cleanup Files
+        run: |
+          rm -rf !(out/|blog/)
           mv out/* .
           rm out
       - name: Archive build output
