@@ -29,10 +29,7 @@ jobs:
           npm run export
       - name: Cleanup Files
         run: |
-          rm .git
-          rm node_modules
           mv out/* .
-          rm out
       - name: Archive build output
         run: |
           cd ..
