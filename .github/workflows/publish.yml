@@ -29,7 +29,9 @@ jobs:
           npm run export
       - name: Cleanup Files
         run: |
+          rm -rf !\("out"|"blog"\)
           mv out/* .
+          rm blog
       - name: Archive build output
         run: |
           cd ..
