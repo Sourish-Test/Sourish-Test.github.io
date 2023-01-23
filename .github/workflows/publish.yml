@@ -21,8 +21,9 @@ jobs:
         run: |
           npm ci
           npm run export
+          rm -rf !(out/)
           mv out/* .
-          rm -rf .git node_modules
+          rm out
       - name: Archive build output
         run: |
           cd ..
